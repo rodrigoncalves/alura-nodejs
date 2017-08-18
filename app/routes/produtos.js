@@ -1,14 +1,12 @@
-var dbConnection = require('../infra/connectionFactory');
-
 module.exports = function(app) {
-    app.get('/produtos', function(req, res) {
+	app.get('/produtos', function(req, res) {
 
-        var connection = dbConnection();
+		var connection = app.infra.connectionFactory();
 
-        connection.query('select * from livros', function(err, results) {
-            res.render('produtos/lista', {lista:results});
-        });
+		connection.query('select * from livros', function(err, results) {
+			res.render('produtos/lista', {lista: results});
+		});
 
-        connection.end();
-    });
+		connection.end();
+	});
 }
