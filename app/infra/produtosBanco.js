@@ -1,7 +1,13 @@
 module.exports = function() {
-    this.lista = function(connection, cb) {
-        connection.query('select * from livros', cb);
-    }
+    return function(connection) {
+        this.lista = function(cb) {
+            connection.query('select * from livros', cb);
+        }
 
-    return this;
+        // this.remove = function(cb) {
+        //     connection.query('select * from produtos', cb);
+        // }
+
+        return this;
+    }
 }

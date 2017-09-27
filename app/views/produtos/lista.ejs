@@ -7,6 +7,7 @@
                 <td>descricao</td>
                 <td>preco</td>
             </tr>
+            <%if(lista){%>
             <%for(var i=0;i<lista.length;i++) {%>
                 <tr>
                     <td><%=lista[i].id%></td>
@@ -14,6 +15,7 @@
                     <td><%=lista[i].descricao%></td>
                     <td><%=lista[i].preco%></td>
                 </tr>
+            <%}%>
             <%}%>
             <tr>
             </tr>
