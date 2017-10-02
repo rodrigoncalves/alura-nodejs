@@ -4,6 +4,7 @@ module.exports = function(app) {
 		var produtosDAO = new app.infra.ProdutosDAO(connection);
 
 		produtosDAO.lista(function(err, results) {
+			if (err) console.log(err);
 			res.render('produtos/lista', {lista: results});
 		});
 
@@ -27,10 +28,11 @@ module.exports = function(app) {
 		var connection = app.infra.connectionFactory();
 		var produtosDAO = new app.infra.ProdutosDAO(connection);
 
-		var produto = req.body;
+			var produto = req.body;
 
 		produtosDAO.salva(produto, function(err, results) {
+			if (err) console.log(err);
 			res.render('produtos/lista');
-		})
-	})
+		});
+	});
 }
