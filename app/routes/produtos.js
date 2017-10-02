@@ -27,11 +27,11 @@ module.exports = function(app) {
 		res.render('produtos/form');
 	});
 
-	app.post('/produtos/salva', function(req, res) {
+	app.post('/produtos', function(req, res) {
 		var connection = app.infra.connectionFactory();
 		var produtosDAO = new app.infra.ProdutosDAO(connection);
 
-			var produto = req.body;
+		var produto = req.body;
 
 		produtosDAO.salva(produto, function(err, results) {
 			if (err) console.log(err);
