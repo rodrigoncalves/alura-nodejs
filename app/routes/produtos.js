@@ -6,7 +6,14 @@ module.exports = function(app) {
 
 		produtosDAO.lista(function(err, results) {
 			if (err) console.log(err);
-			res.render('produtos/lista', {lista: results});
+			res.format({
+				html: function() {
+					res.render('produtos/lista', {lista: results});
+				},
+				json: function() {
+					res.json(results);
+				}
+			});
 		});
 
 		connection.end();
