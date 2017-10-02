@@ -39,6 +39,7 @@ module.exports = function(app) {
 		var produtosDAO = new app.infra.ProdutosDAO(connection);
 
 		var produto = req.body;
+		console.log(produto);
 
 		produtosDAO.salva(produto, function(err, results) {
 			if (err) console.log(err);
