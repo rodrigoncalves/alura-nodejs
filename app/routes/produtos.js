@@ -35,12 +35,19 @@ module.exports = function(app) {
 	});
 
 	app.post('/produtos', function(req, res) {
+		var produto = req.body;
+
+		var valTitulo = req.assert('titulo', 'Título é obrigatório');
+		valTitulo.notEmpty();
+
+		var valErrors = req.validationErrors();
+		if (valErrors) {
+			res.render('/produtos/form');
+			return;
+		}
+
 		var connection = app.infra.connectionFactory();
 		var produtosDAO = new app.infra.ProdutosDAO(connection);
-
-		var produto = req.body;
-		console.log(produto);
-
 		produtosDAO.salva(produto, function(err, results) {
 			if (err) console.log(err);
 			res.redirect("/produtos");
