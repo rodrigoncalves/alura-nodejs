@@ -1,4 +1,5 @@
 var http = require('http');
+var assert = require('assert');
 
 describe('ProdutosController', function() {
     it('#listagem json', function(done) {
@@ -11,15 +12,9 @@ describe('ProdutosController', function() {
             }
         };
 
-        http.get(configuracoes, function(res){
-            if (res.statusCode == 200) {
-                console.log('Status OK');
-            }
-
-            if (res.headers['content-type'] == 'application/json; charset=utf-8') {
-                console.log('Content-type OK');
-            }
-
+        http.get(configuracoes, function(res) {
+            assert.equal(res.statusCode, 200, "Status error");
+            assert.equal(res.headers['content-type'], 'application/json; charset=utf-8');
             done();
         });
     });
