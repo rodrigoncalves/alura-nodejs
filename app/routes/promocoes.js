@@ -13,12 +13,9 @@ module.exports = function(app) {
 
     app.post("/promocoes", function(req, res) {
         var promocao = req.body;
+        var io = app.get('io');
+        io.emit('novaPromocao', promocao);
 
-        var connection = app.infra.connectionFactory();
-        var produtosDAO = new app.infra.ProdutosDAO(connection);
-        produtosDAO.salva(promocao, function(err, result) {
-            if (err) console.log(err);
-            res.redirect('promocoes/form');
-        });
+        res.redirect('promocoes/form');
     });
 }
